@@ -3,22 +3,22 @@ pipeline {
     stages {
         stage ('build docker image') {
             steps {
-                sh '/usr/bin/docker image build -t <docker hub username>/jenkinsdemo .'
+                sh '/usr/bin/docker image build -t pythoncpp/jenkinsdemo .'
             }
         }
         stage ('docker login') {
             steps {
-                sh 'ehcho <token> | </token>/usr/bin/docker login -u <username> --password-stdin'
+                sh 'echo dckr_pat_SIVwbkzRZ01th6gh3OMDYfo88BM | /usr/bin/docker login -u pythoncpp --password-stdin'
             }
         }
         stage ('push docker image') {
-            stpes {
-                sh '/usr/bin/docker image push <username>/jenkinsdemo'
+            steps {
+                sh '/usr/bin/docker image push pythoncpp/jenkinsdemo'
             }
         }
         stage ('reload docker service') {
             steps {
-                sh '/usr/bin/docker service update --image <username>/jenkinsdemo --force myservice'
+                sh '/usr/bin/docker service update --image pythoncpp/jenkinsdemo --force myservice'
             }
         }
 
